@@ -4,6 +4,8 @@
       <v-card class="logo py-4 d-flex justify-center">
         <NuxtLogo />
         <VuetifyLogo />
+        <v-btn @click="getApi()">GET API</v-btn>
+        <div>{{message}}</div>
       </v-card>
       <v-card>
         <v-card-title class="headline">
@@ -78,6 +80,24 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  data() {
+    return {
+      message : '',
+    }
+  },
+  methods:{
+    async getApi() {
+      try{
+        const url = "api/v1/hello"
+        const res = await this.$axios.get(url)
+        console.log(res)
+        this.message = res.data
+      }catch(e){
+        console.log(e)
+      }
+
+    }
+  }
 }
 </script>
