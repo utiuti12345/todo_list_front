@@ -1,10 +1,16 @@
 import colors from 'vuetify/es5/util/colors'
+const envPath = `config/.env.${process.env.ENV || 'local'}`
+require('dotenv').config({ path: envPath })
 
 export default {
-  server: {
-    port: 8080
+  env: {
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messageSenderId: process.env.MESSAGE_SENDER_ID,
+    appId: process.env.APP_ID,
   },
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - todo-list-front',
@@ -75,5 +81,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  server: {
+    port: 8080
+  },
 }
